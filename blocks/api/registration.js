@@ -3,7 +3,7 @@
 /**
  * External dependencies
  */
-import { get, isFunction, some } from 'lodash';
+import { get, isFunction, some, mapValues } from 'lodash';
 
 /**
  * WordPress dependencies
@@ -113,10 +113,18 @@ export function registerBlockType( name, settings ) {
 	if ( ! settings.icon ) {
 		settings.icon = 'block-default';
 	}
+
+	const attributes = settings.attributes ?
+		settings.attributes :
+		get( window._wpBlocksAttributes, name, );
+
 	const block = blocks[ name ] = {
-		name,
-		attributes: get( window._wpBlocksAttributes, name ),
 		...settings,
+		name,
+		attributes: mapValues( attributes, ( attribute ) => ( {
+			source: { type: 'comment' },
+			...attribute,
+		} ) ),
 	};
 
 	return block;
