@@ -116,7 +116,7 @@ export function registerBlockType( name, settings ) {
 
 	const attributes = settings.attributes ?
 		settings.attributes :
-		get( window._wpBlocksAttributes, name, );
+		get( window._wpBlocksAttributes, name );
 
 	const block = blocks[ name ] = {
 		...settings,
