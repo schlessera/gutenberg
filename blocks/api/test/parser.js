@@ -6,12 +6,9 @@ import { noop } from 'lodash';
 /**
  * Internal dependencies
  */
-import { text, attr, html } from '../source';
 import {
-	isValidSource,
 	getBlockAttributes,
 	asType,
-	getSourcedAttributes,
 	createBlockWithFallback,
 	default as parse,
 } from '../parser';
@@ -38,47 +35,6 @@ describe( 'block parser', () => {
 		setUnknownTypeHandlerName( undefined );
 		getBlockTypes().forEach( ( block ) => {
 			unregisterBlockType( block.name );
-		} );
-	} );
-
-	describe( 'isValidSource()', () => {
-		it( 'returns false if falsey argument', () => {
-			expect( isValidSource() ).toBe( false );
-		} );
-
-		it( 'returns true if valid source argument', () => {
-			expect( isValidSource( text() ) ).toBe( true );
-		} );
-
-		it( 'returns false if invalid source argument', () => {
-			expect( isValidSource( () => {} ) ).toBe( false );
-		} );
-	} );
-
-	describe( 'getSourcedAttributes()', () => {
-		it( 'should return matched attributes from valid sources', () => {
-			const sources = {
-				number: {
-					type: 'number',
-				},
-				emphasis: {
-					type: 'string',
-					source: text( 'strong' ),
-				},
-			};
-
-			const rawContent = '<span>Ribs <strong>& Chicken</strong></span>';
-
-			expect( getSourcedAttributes( rawContent, sources ) ).toEqual( {
-				emphasis: '& Chicken',
-			} );
-		} );
-
-		it( 'should return an empty object if no sources defined', () => {
-			const sources = {};
-			const rawContent = '<span>Ribs <strong>& Chicken</strong></span>';
-
-			expect( getSourcedAttributes( rawContent, sources ) ).toEqual( {} );
 		} );
 	} );
 
@@ -126,22 +82,23 @@ describe( 'block parser', () => {
 				attributes: {
 					content: {
 						type: 'string',
-						source: text( 'div' ),
+						source: 'text',
+						selector: 'div',
 					},
 					number: {
 						type: 'number',
-						source: attr( 'div', 'data-number' ),
+						source: 'attribute',
+						attribute: 'data-number',
+						selector: 'div',
 					},
 					align: {
 						type: 'string',
+						source: 'comment',
 					},
 					topic: {
 						type: 'string',
 						default: 'none',
-					},
-					ignoredDomSource: {
-						type: 'string',
-						source: ( node ) => node.innerHTML,
+						source: 'comment',
 					},
 				},
 			};
@@ -162,7 +119,8 @@ describe( 'block parser', () => {
 				attributes: {
 					content: {
 						type: 'string',
-						source: text( 'div' ),
+						source: 'text',
+						selector: 'div',
 					},
 				},
 				supportAnchor: true,
@@ -231,7 +189,7 @@ describe( 'block parser', () => {
 				attributes: {
 					content: {
 						type: 'string',
-						source: html(),
+						source: 'html',
 					},
 					fruit: {
 						type: 'string',
@@ -272,7 +230,7 @@ describe( 'block parser', () => {
 				attributes: {
 					content: {
 						type: 'string',
-						source: text(),
+						source: 'text',
 					},
 					smoked: { type: 'string' },
 					url: { type: 'string' },
@@ -311,7 +269,7 @@ describe( 'block parser', () => {
 				attributes: {
 					content: {
 						type: 'string',
-						source: text(),
+						source: 'text',
 					},
 				},
 				save: noop,
@@ -384,7 +342,7 @@ describe( 'block parser', () => {
 				attributes: {
 					content: {
 						type: 'string',
-						source: html(),
+						source: 'html',
 					},
 				},
 				save: noop,

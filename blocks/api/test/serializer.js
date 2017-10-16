@@ -6,7 +6,6 @@ import { createElement, Component } from '@wordpress/element';
 /**
  * Internal dependencies
  */
-import { text } from '../source';
 import serialize, {
 	getCommentAttributes,
 	getBeautifulContent,
@@ -171,13 +170,15 @@ describe( 'block serializer', () => {
 			}, { attributes: {
 				fruit: {
 					type: 'string',
-					source: text(),
+					source: 'text',
 				},
 				category: {
 					type: 'string',
+					source: 'comment',
 				},
 				ripeness: {
 					type: 'string',
+					source: 'comment',
 				},
 			} } );
 
@@ -194,9 +195,11 @@ describe( 'block serializer', () => {
 			}, { attributes: {
 				fruit: {
 					type: 'string',
+					source: 'comment',
 				},
 				ripeness: {
 					type: 'string',
+					source: 'comment',
 				},
 			} } );
 
@@ -373,7 +376,7 @@ describe( 'block serializer', () => {
 					},
 					content: {
 						type: 'string',
-						source: text(),
+						source: 'text',
 					},
 					stuff: {
 						type: 'string',
@@ -436,7 +439,7 @@ describe( 'block serializer', () => {
 				attributes: {
 					content: {
 						type: 'string',
-						source: text(),
+						source: 'text',
 					},
 				},
 				save( { attributes } ) {

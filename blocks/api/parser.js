@@ -107,13 +107,12 @@ export function getBlockAttribute( attributeKey, attributeSchema, rawContent, co
 		default: {
 			// Coerce value to specified type
 			const matcher = matcherFromSource( attributeSchema );
-			const rawValue = hpqParse( rawContent, matcher );
-			value = rawValue === undefined ? rawValue : asType( rawValue, attributeSchema.type );
+			value = hpqParse( rawContent, matcher );
 			break;
 		}
 	}
 
-	return value === undefined ? attributeSchema.default : value;
+	return value === undefined ? attributeSchema.default : asType( value, attributeSchema.type );
 }
 
 /**
