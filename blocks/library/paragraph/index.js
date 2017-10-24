@@ -24,6 +24,7 @@ import InspectorControls from '../../inspector-controls';
 import ToggleControl from '../../inspector-controls/toggle-control';
 import RangeControl from '../../inspector-controls/range-control';
 import ColorPalette from '../../color-palette';
+import ContrastChecker from '../../contrast-checker';
 import BlockDescription from '../../block-description';
 
 const { children } = source;
@@ -135,6 +136,10 @@ registerBlockType( 'core/paragraph', {
 						<ColorPalette
 							value={ backgroundColor }
 							onChange={ ( colorValue ) => setAttributes( { backgroundColor: colorValue } ) }
+						/>
+						<ContrastChecker
+							{ ...{ backgroundColor, textColor } }
+							isLargeText={ fontSize >= 18 }
 						/>
 					</PanelBody>
 					<PanelBody title={ __( 'Text Color' ) }>
