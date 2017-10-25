@@ -152,6 +152,12 @@ function partition( predicate, list ) {
 
 }
 
+//////////////////////////////////////////////////////
+//
+//   Here starts the grammar proper!
+//
+//////////////////////////////////////////////////////
+
 Block_List
   = pre:$(!Token .)*
     ts:(t:Token html:$((!Token .)*) { /** <?php return array( $t, $html ); ?> **/ return [ t, html ] })*
