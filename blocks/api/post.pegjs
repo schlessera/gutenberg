@@ -220,7 +220,7 @@ Block_Void
   }
 
 Block_Balanced
-  = s:Block_Start children:(Token / $(!Block_End .))+ e:Block_End
+  = s:Block_Start children:(Token / $(!Block_End .))* e:Block_End
   {
     /** <?php
     list( $innerHTML, $innerBlocks ) = peg_array_partition( $children, 'is_string' );

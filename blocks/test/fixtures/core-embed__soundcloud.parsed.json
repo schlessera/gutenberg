@@ -5,10 +5,10 @@
             "url": "https://soundcloud.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-soundcloud\">\n    https://soundcloud.com/\n    <figcaption>Embedded content from soundcloud</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-soundcloud\">\n    https://soundcloud.com/\n    <figcaption>Embedded content from soundcloud</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

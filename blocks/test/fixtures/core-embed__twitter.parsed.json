@@ -5,10 +5,10 @@
             "url": "https://twitter.com/automattic"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-twitter\">\n    https://twitter.com/automattic\n    <figcaption>We are Automattic</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-twitter\">\n    https://twitter.com/automattic\n    <figcaption>We are Automattic</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

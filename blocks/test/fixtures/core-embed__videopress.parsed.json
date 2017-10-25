@@ -5,10 +5,10 @@
             "url": "https://videopress.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-videopress\">\n    https://videopress.com/\n    <figcaption>Embedded content from videopress</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-videopress\">\n    https://videopress.com/\n    <figcaption>Embedded content from videopress</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

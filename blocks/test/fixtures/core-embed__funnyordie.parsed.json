@@ -5,10 +5,10 @@
             "url": "https://funnyordie.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-funnyordie\">\n    https://funnyordie.com/\n    <figcaption>Embedded content from funnyordie</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-funnyordie\">\n    https://funnyordie.com/\n    <figcaption>Embedded content from funnyordie</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

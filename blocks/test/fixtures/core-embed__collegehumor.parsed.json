@@ -5,10 +5,10 @@
             "url": "https://collegehumor.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-collegehumor\">\n    https://collegehumor.com/\n    <figcaption>Embedded content from collegehumor</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-collegehumor\">\n    https://collegehumor.com/\n    <figcaption>Embedded content from collegehumor</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

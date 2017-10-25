@@ -3,10 +3,10 @@
         "blockName": "core/separator",
         "attrs": null,
         "innerBlocks": [],
-        "innerHtml": "\n<hr class=\"wp-block-separator\" />\n"
+        "innerHTML": "\n<hr class=\"wp-block-separator\" />\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

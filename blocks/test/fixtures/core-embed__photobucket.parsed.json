@@ -5,10 +5,10 @@
             "url": "https://photobucket.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-photobucket\">\n    https://photobucket.com/\n    <figcaption>Embedded content from photobucket</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-photobucket\">\n    https://photobucket.com/\n    <figcaption>Embedded content from photobucket</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

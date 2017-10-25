@@ -5,10 +5,10 @@
             "url": "https://facebook.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-facebook\">\n    https://facebook.com/\n    <figcaption>Embedded content from facebook</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-facebook\">\n    https://facebook.com/\n    <figcaption>Embedded content from facebook</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

@@ -5,10 +5,10 @@
             "url": "https://issuu.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-issuu\">\n    https://issuu.com/\n    <figcaption>Embedded content from issuu</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-issuu\">\n    https://issuu.com/\n    <figcaption>Embedded content from issuu</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

@@ -5,10 +5,10 @@
             "url": "https://tumblr.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-tumblr\">\n    https://tumblr.com/\n    <figcaption>Embedded content from tumblr</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-tumblr\">\n    https://tumblr.com/\n    <figcaption>Embedded content from tumblr</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

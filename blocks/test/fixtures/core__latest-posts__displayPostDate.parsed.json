@@ -6,10 +6,10 @@
             "displayPostDate": true
         },
         "innerBlocks": [],
-        "innerHtml": ""
+        "innerHTML": ""
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

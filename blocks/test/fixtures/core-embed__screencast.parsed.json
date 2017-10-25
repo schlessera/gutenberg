@@ -5,10 +5,10 @@
             "url": "https://screencast.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-screencast\">\n    https://screencast.com/\n    <figcaption>Embedded content from screencast</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-screencast\">\n    https://screencast.com/\n    <figcaption>Embedded content from screencast</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

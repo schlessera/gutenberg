@@ -5,10 +5,10 @@
             "url": "https://vine.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-vine\">\n    https://vine.com/\n    <figcaption>Embedded content from vine</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-vine\">\n    https://vine.com/\n    <figcaption>Embedded content from vine</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

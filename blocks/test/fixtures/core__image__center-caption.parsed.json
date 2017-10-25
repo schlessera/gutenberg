@@ -5,10 +5,10 @@
             "align": "center"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-image\"><img src=\"https://cldup.com/YLYhpou2oq.jpg\" class=\"aligncenter\"/><figcaption>Give it a try. Press the &quot;really wide&quot; button on the image toolbar.</figcaption></figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-image\"><img src=\"https://cldup.com/YLYhpou2oq.jpg\" class=\"aligncenter\"/><figcaption>Give it a try. Press the &quot;really wide&quot; button on the image toolbar.</figcaption></figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

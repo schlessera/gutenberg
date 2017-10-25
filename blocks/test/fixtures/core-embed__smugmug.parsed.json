@@ -5,10 +5,10 @@
             "url": "https://smugmug.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-smugmug\">\n    https://smugmug.com/\n    <figcaption>Embedded content from smugmug</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-smugmug\">\n    https://smugmug.com/\n    <figcaption>Embedded content from smugmug</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

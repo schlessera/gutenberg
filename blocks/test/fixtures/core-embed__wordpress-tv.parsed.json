@@ -5,10 +5,10 @@
             "url": "https://wordpress.tv/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-wordpress-tv\">\n    https://wordpress.tv/\n    <figcaption>Embedded content from wordpress-tv</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-wordpress-tv\">\n    https://wordpress.tv/\n    <figcaption>Embedded content from wordpress-tv</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

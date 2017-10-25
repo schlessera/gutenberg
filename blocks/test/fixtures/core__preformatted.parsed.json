@@ -3,10 +3,10 @@
         "blockName": "core/preformatted",
         "attrs": null,
         "innerBlocks": [],
-        "innerHtml": "\n<pre class=\"wp-block-preformatted\">Some <em>preformatted</em> text...<br>And more!</pre>\n"
+        "innerHTML": "\n<pre class=\"wp-block-preformatted\">Some <em>preformatted</em> text...<br>And more!</pre>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

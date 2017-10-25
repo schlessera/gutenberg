@@ -3,10 +3,10 @@
         "blockName": "core/pullquote",
         "attrs": null,
         "innerBlocks": [],
-        "innerHtml": "\n<blockquote class=\"wp-block-pullquote alignnone\">\n    <p>Paragraph <strong>one</strong></p>\n    <p>Paragraph two</p>\n    <footer>by whomever</footer>\n</blockquote>\n"
+        "innerHTML": "\n<blockquote class=\"wp-block-pullquote alignnone\">\n    <p>Paragraph <strong>one</strong></p>\n    <p>Paragraph two</p>\n    <footer>by whomever</footer>\n</blockquote>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

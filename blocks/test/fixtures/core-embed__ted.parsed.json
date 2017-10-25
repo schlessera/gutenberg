@@ -5,10 +5,10 @@
             "url": "https://ted.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-ted\">\n    https://ted.com/\n    <figcaption>Embedded content from ted</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-ted\">\n    https://ted.com/\n    <figcaption>Embedded content from ted</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

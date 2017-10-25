@@ -5,10 +5,10 @@
             "url": "https://hulu.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-hulu\">\n    https://hulu.com/\n    <figcaption>Embedded content from hulu</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-hulu\">\n    https://hulu.com/\n    <figcaption>Embedded content from hulu</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

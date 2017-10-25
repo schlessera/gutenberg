@@ -5,10 +5,10 @@
             "url": "https://polldaddy.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-polldaddy\">\n    https://polldaddy.com/\n    <figcaption>Embedded content from polldaddy</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-polldaddy\">\n    https://polldaddy.com/\n    <figcaption>Embedded content from polldaddy</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

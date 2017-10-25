@@ -3,10 +3,10 @@
         "blockName": "core/shortcode",
         "attrs": null,
         "innerBlocks": [],
-        "innerHtml": "\n[gallery ids=\"238,338\"]\n"
+        "innerHTML": "\n[gallery ids=\"238,338\"]\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

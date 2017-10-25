@@ -5,10 +5,10 @@
             "url": "https://imgur.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-imgur\">\n    https://imgur.com/\n    <figcaption>Embedded content from imgur</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-imgur\">\n    https://imgur.com/\n    <figcaption>Embedded content from imgur</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

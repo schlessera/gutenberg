@@ -5,10 +5,10 @@
             "url": "https://slideshare.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-slideshare\">\n    https://slideshare.com/\n    <figcaption>Embedded content from slideshare</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-slideshare\">\n    https://slideshare.com/\n    <figcaption>Embedded content from slideshare</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

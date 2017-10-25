@@ -4,10 +4,10 @@
         "attrs": {
             "noTeaser": false
         },
-        "innerHtml": ""
+        "innerHTML": ""
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

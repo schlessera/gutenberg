@@ -5,10 +5,10 @@
             "url": "https://kickstarter.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-kickstarter\">\n    https://kickstarter.com/\n    <figcaption>Embedded content from kickstarter</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-kickstarter\">\n    https://kickstarter.com/\n    <figcaption>Embedded content from kickstarter</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

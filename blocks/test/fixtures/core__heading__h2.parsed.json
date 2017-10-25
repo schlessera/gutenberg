@@ -3,10 +3,10 @@
         "blockName": "core/heading",
         "attrs": null,
         "innerBlocks": [],
-        "innerHtml": "\n<h2>A picture is worth a thousand words, or so the saying goes</h2>\n"
+        "innerHTML": "\n<h2>A picture is worth a thousand words, or so the saying goes</h2>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

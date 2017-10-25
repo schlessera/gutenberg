@@ -3,10 +3,10 @@
         "blockName": "core/verse",
         "attrs": null,
         "innerBlocks": [],
-        "innerHtml": "\n<pre class=\"wp-block-verse\">A <em>verse</em>…<br>And more!</pre>\n"
+        "innerHTML": "\n<pre class=\"wp-block-verse\">A <em>verse</em>…<br>And more!</pre>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

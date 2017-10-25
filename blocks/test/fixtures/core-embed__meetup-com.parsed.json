@@ -5,10 +5,10 @@
             "url": "https://meetup.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-meetup-com\">\n    https://meetup.com/\n    <figcaption>Embedded content from meetup-com</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-meetup-com\">\n    https://meetup.com/\n    <figcaption>Embedded content from meetup-com</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

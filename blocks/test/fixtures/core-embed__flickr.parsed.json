@@ -5,10 +5,10 @@
             "url": "https://flickr.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-flickr\">\n    https://flickr.com/\n    <figcaption>Embedded content from flickr</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-flickr\">\n    https://flickr.com/\n    <figcaption>Embedded content from flickr</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

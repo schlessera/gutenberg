@@ -5,10 +5,10 @@
             "url": "https://wordpress.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-wordpress\">\n    https://wordpress.com/\n    <figcaption>Embedded content from WordPress</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-wordpress\">\n    https://wordpress.com/\n    <figcaption>Embedded content from WordPress</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]

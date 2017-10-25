@@ -5,10 +5,10 @@
             "url": "https://speaker.com/"
         },
         "innerBlocks": [],
-        "innerHtml": "\n<figure class=\"wp-block-embed-speaker\">\n    https://speaker.com/\n    <figcaption>Embedded content from speaker</figcaption>\n</figure>\n"
+        "innerHTML": "\n<figure class=\"wp-block-embed-speaker\">\n    https://speaker.com/\n    <figcaption>Embedded content from speaker</figcaption>\n</figure>\n"
     },
     {
-        "blockName": "core/freeform",
-        "innerHtml": "\n"
+        "attrs": {},
+        "innerHTML": "\n"
     }
 ]
