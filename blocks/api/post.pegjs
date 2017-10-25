@@ -20,6 +20,8 @@ function maybeJSON( s ) {
 	}
 }
 
+}
+
 Block_List
   = pre:$(!Token .)*
     ts:(t:Token html:$((!Token .)*) { /** <?php return $t; ?> **/ return [ t, html ] })*
