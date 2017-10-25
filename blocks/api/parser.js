@@ -226,7 +226,7 @@ export function createBlockWithFallback( name, rawContent, attributes ) {
 export function parseWithGrammar( content ) {
 	return grammarParse( content ).reduce( ( memo, blockNode ) => {
 		// eslint-disable-next-line no-unused-vars
-		const { blockName, innerBlocks, innerHtml: rawContent, attrs } = blockNode;
+		const { blockName, innerBlocks, innerHTML: rawContent, attrs } = blockNode;
 		const block = createBlockWithFallback( blockName, rawContent.trim(), attrs );
 		if ( block ) {
 			memo.push( block );
