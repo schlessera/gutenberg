@@ -87,6 +87,8 @@ if ( ! function_exists( 'peg_join_blocks' ) ) {
         if ( ! empty( $post ) ) {
             $blocks[] = array( 'blockName' => 'core/freeform', 'innerHTML' => $post );
         }
+        
+        return $blocks;
     }
 }
 

@@ -1957,6 +1957,8 @@ class Gutenberg_PEG_Parser {
             if ( ! empty( $post ) ) {
                 $blocks[] = array( 'blockName' => 'core/freeform', 'innerHTML' => $post );
             }
+            
+            return $blocks;
         }
     }
 
