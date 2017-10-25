@@ -1941,7 +1941,7 @@ class Gutenberg_PEG_Parser {
             $blocks = array();
             
             if ( ! empty( $pre ) ) {
-                $blocks[] = array( 'blockName' => 'core/freeform', 'innerHTML' => $pre );
+                $blocks[] = array( 'attrs' => array(), 'innerHTML' => $pre );
             }
             
             foreach ( $tokens as $token ) {
@@ -1950,12 +1950,12 @@ class Gutenberg_PEG_Parser {
                 $blocks[] = $token;
                 
                 if ( ! empty( $html ) ) {
-                    $blocks[] = array( 'blockName' => 'core/freeform', 'innerHTML' => $html );
+                    $blocks[] = array( 'attrs' => array(), 'innerHTML' => $html );
                 }
             }
             
             if ( ! empty( $post ) ) {
-                $blocks[] = array( 'blockName' => 'core/freeform', 'innerHTML' => $post );
+                $blocks[] = array( 'attrs' => array(), 'innerHTML' => $post );
             }
             
             return $blocks;
