@@ -263,20 +263,8 @@ class Gutenberg_PEG_Parser {
     private $peg_c32;
     private $peg_c33;
 
-    private function peg_f0($pre, $t, $html) { return $t; }
-    private function peg_f1($pre, $ts, $post) {
-        $blocks = array();
-        if ( ! empty( $pre ) ) { $blocks[] = $pre; }
-        foreach ( $ts as $pair ) {
-          $blocks[] = $pair[ 0 ];
-          if ( ! empty( $pair[ 1 ] ) ) {
-            $blocks[] = $pair[ 1 ];
-          };
-        }
-        if ( ! empty( $post ) ) { $blocks[] = $post; }
-
-        return $blocks;
-        }
+    private function peg_f0($pre, $t, $html) { return array( $t, $html ); }
+    private function peg_f1($pre, $ts, $post) { return peg_join_blocks( $pre, $ts, $post ); }
     private function peg_f2($text) { return $text; }
     private function peg_f3($customText, $noTeaser) {
         $attrs = array( 'noTeaser' => (bool) $noTeaser );

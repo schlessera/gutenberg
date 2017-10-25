@@ -1,5 +1,51 @@
 {
 
+/*
+ *
+ *    _____       _             _
+ *   / ____|     | |           | |
+ *  | |  __ _   _| |_ ___ _ __ | |__   ___ _ __ __ _
+ *  | | |_ | | | | __/ _ \ '_ \| '_ \ / _ \ '__/ _` |
+ *  | |__| | |_| | ||  __/ | | | |_) |  __/ | | (_| |
+ *   \_____|\__,_|\__\___|_| |_|_.__/ \___|_|  \__, |
+ *                                              __/ |
+ *                  GRAMMAR                    |___/
+ *
+ *
+ * Welcome to the grammar file for Gutenberg posts!
+ *
+ * Please don't be distracted by the functions at the top
+ * here - they're just helpers for the grammar below. We
+ * try to keep them as minimal and simple as possible,
+ * but the parser generator forces us to declare them at
+ * the beginning of the file.
+ *
+ * What follows is the official specification grammar for
+ * documents created or edited in Gutenberg. It starts at
+ * the top-level rule `Block_List`
+ *
+ * The grammar is defined by a series of _rules_ and ways
+ * to return matches on those rules. It's a _PEG_, a
+ * parsing expression grammar, which simply means that for
+ * each of our rules we have a set of sub-rules to match
+ * on and the generated parser will try them in order
+ * until it finds the first match.
+ *
+ * This grammar is a _specification_ (with as little actual
+ * code as we can get away with) which is used by the
+ * parser generator to generate the actual _parser_ which
+ * is used by Gutenberg. We generate two parsers: one in
+ * JavaScript for use the browser and one in PHP for
+ * WordPress itself. PEG parser generators are available
+ * in many languages, though different libraries may require
+ * some translation of this grammar into their syntax.
+ *
+ * For more information:
+ * @see https://pegjs.org
+ * @see https://en.wikipedia.org/wiki/Parsing_expression_grammar
+ *
+ */
+
 /** <?php
 // The `maybeJSON` function is not needed in PHP because its return semantics
 // are the same as `json_decode`
@@ -108,7 +154,7 @@ function partition( predicate, list ) {
 
 Block_List
   = pre:$(!Token .)*
-    ts:(t:Token html:$((!Token .)*) { /** <?php return $t; ?> **/ return [ t, html ] })*
+    ts:(t:Token html:$((!Token .)*) { /** <?php return array( $t, $html ); ?> **/ return [ t, html ] })*
     post:$(.*)
   { /** <?php return peg_join_blocks( $pre, $ts, $post ); ?> **/
     return joinBlocks( pre, ts, post );
