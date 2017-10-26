@@ -146,7 +146,7 @@ function partition( predicate, list ) {
 
         predicate( item )
             ? truthy.push( item )
-            : falsey.push( item );
+            : falsey.push( item )
     };
 
     return [ truthy, falsey ];
