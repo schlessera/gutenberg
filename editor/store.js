@@ -21,9 +21,10 @@ const GUTENBERG_PREFERENCES_KEY = `GUTENBERG_PREFERENCES_${ window.userSettings.
 /**
  * Creates a new instance of a Redux store.
  *
+ * @param {?Object} initialState Optional initial state
  * @return {Redux.Store} Redux store
  */
-function createReduxStore() {
+function createReduxStore( initialState ) {
 	const enhancers = [
 		applyMiddleware( multi, refx( effects ) ),
 		storePersist( 'preferences', GUTENBERG_PREFERENCES_KEY ),
@@ -33,7 +34,7 @@ function createReduxStore() {
 		enhancers.push( window.__REDUX_DEVTOOLS_EXTENSION__() );
 	}
 
-	const store = createStore( reducer, flowRight( enhancers ) );
+	const store = createStore( reducer, initialState, flowRight( enhancers ) );
 
 	return store;
 }

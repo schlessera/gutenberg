@@ -7,13 +7,14 @@ import 'moment-timezone/moment-timezone-utils';
 /**
  * WordPress dependencies
  */
-import { render } from '@wordpress/element';
+import { render, unmountComponentAtNode } from '@wordpress/element';
 import { settings as dateSettings } from '@wordpress/date';
 
 /**
  * Internal dependencies
  */
 import './assets/stylesheets/main.scss';
+import ErrorBoundary from './error-boundary';
 import Layout from './layout';
 import EditorProvider from './provider';
 import { initializeMetaBoxState } from './actions';
@@ -49,17 +50,29 @@ window.jQuery( document ).on( 'heartbeat-tick', ( event, response ) => {
  * The return value of this function is not necessary if we change where we
  * call createEditorInstance(). This is due to metaBox timing.
  *
- * @param {String}  id       Unique identifier for editor instance
- * @param {Object}  post     API entity for post to edit
- * @param {?Object} settings Editor settings object
+ * @param {String}  id           Unique identifier for editor instance
+ * @param {Object}  post         API entity for post to edit
+ * @param {?Object} settings     Editor settings object
+ * @param {?Object} initialState Initial editor state to hydrate
  * @return {Object} Editor interface. Currently supports metabox initialization.
  */
-export function createEditorInstance( id, post, settings ) {
+export function createEditorInstance( id, post, settings, initialState ) {
 	const target = document.getElementById( id );
 
+	// When an unhandled error occurs, user can choose to reboot the editor,
+	// replacing a previous mount using initialState from the crashed state.
+	unmountComponentAtNode( target );
+	const reboot = createEditorInstance.bind( null, id, post, settings );
+
 	const provider = render(
-		<EditorProvider settings={ settings } post={ post }>
-			<Layout />
+		<EditorProvider
+			settings={ settings }
+			post={ post }
+			initialState={ initialState }
+		>
+			<ErrorBoundary onError={ reboot }>
+				<Layout />
+			</ErrorBoundary>
 		</EditorProvider>,
 		target
 	);
