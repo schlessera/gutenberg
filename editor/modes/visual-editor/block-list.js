@@ -10,6 +10,8 @@ import {
 	mapValues,
 	noop,
 	throttle,
+	includes,
+	dropRight,
 } from 'lodash';
 import scrollIntoView from 'dom-scroll-into-view';
 import 'element-closest';
@@ -202,7 +204,8 @@ class VisualEditorBlockList extends Component {
 	}
 
 	render() {
-		const { blocks } = this.props;
+		const { blocks, multiSelectedBlockUids } = this.props;
+		const selectedWithoutLastUids = dropRight( multiSelectedBlockUids );
 
 		return (
 			<div>
@@ -215,7 +218,7 @@ class VisualEditorBlockList extends Component {
 						onSelectionStart={ this.onSelectionStart }
 						onShiftSelection={ this.onShiftSelection }
 					/>,
-					<VisualEditorSiblingInserter
+					! includes( selectedWithoutLastUids, uid ) && <VisualEditorSiblingInserter
 						key={ 'sibling-inserter-' + uid }
 						insertIndex={ index + 1 }
 					/>,
