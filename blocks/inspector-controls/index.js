@@ -18,7 +18,9 @@ import ToggleControl from './toggle-control';
 export default function InspectorControls( { children } ) {
 	return (
 		<Fill name="Inspector.Controls">
-			{ children }
+			<div>
+				{ children }
+			</div>
 		</Fill>
 	);
 }
