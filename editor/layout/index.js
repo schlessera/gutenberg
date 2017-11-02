@@ -23,6 +23,7 @@ import DocumentTitle from '../document-title';
 import AutosaveMonitor from '../autosave-monitor';
 import { removeNotice } from '../actions';
 import MetaBoxes from '../meta-boxes';
+import PluginSlots from '../plugin-slots';
 import {
 	getEditorMode,
 	isEditorSidebarOpened,
@@ -52,6 +53,7 @@ function Layout( { mode, isSidebarOpened, notices, ...props } ) {
 			</div>
 			{ isSidebarOpened && <Sidebar /> }
 			<Popover.Slot />
+			<PluginSlots />
 		</div>
 	);
 }

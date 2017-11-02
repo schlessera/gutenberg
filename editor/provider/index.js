@@ -14,6 +14,7 @@ import { EditableProvider } from '@wordpress/blocks';
 import {
 	APIProvider,
 	DropZoneProvider,
+	HooksProvider,
 	SlotFillProvider as WPSlotFillProvider,
 } from '@wordpress/components';
 
@@ -43,6 +44,8 @@ class EditorProvider extends Component {
 	constructor( props ) {
 		super( ...arguments );
 
+		this.setHooks = this.setHooks.bind( this );
+
 		const store = createReduxStore();
 		store.dispatch( setupEditor( props.post ) );
 
@@ -67,6 +70,10 @@ class EditorProvider extends Component {
 			// eslint-disable-next-line no-console
 			console.error( 'The Editor Provider Props are immutable.' );
 		}
+	}
+
+	setHooks( node ) {
+		this.hooks = node.hooks;
 	}
 
 	render() {
@@ -105,6 +112,11 @@ class EditorProvider extends Component {
 			//  - context.unregisterSlot
 			[
 				WPSlotFillProvider,
+			],
+
+			[
+				HooksProvider,
+				{ ref: this.setHooks },
 			],
 
 			// APIProvider
