@@ -52,7 +52,7 @@
 
 // array arguments are backwards because of PHP
 if ( ! function_exists( 'peg_array_partition' ) ) {
-    function peg_array_partition( $array, callable $predicate ) {
+    function peg_array_partition( $array, $predicate ) {
         $truthy = array();
         $falsey = array();
 
@@ -69,25 +69,25 @@ if ( ! function_exists( 'peg_array_partition' ) ) {
 if ( ! function_exists( 'peg_join_blocks' ) ) {
     function peg_join_blocks( $pre, $tokens, $post ) {
         $blocks = array();
-        
+
         if ( ! empty( $pre ) ) {
             $blocks[] = array( 'attrs' => array(), 'innerHTML' => $pre );
         }
-        
+
         foreach ( $tokens as $token ) {
             list( $token, $html ) = $token;
-            
+
             $blocks[] = $token;
-            
+
             if ( ! empty( $html ) ) {
                 $blocks[] = array( 'attrs' => array(), 'innerHTML' => $html );
             }
         }
-        
+
         if ( ! empty( $post ) ) {
             $blocks[] = array( 'attrs' => array(), 'innerHTML' => $post );
         }
-        
+
         return $blocks;
     }
 }
@@ -103,26 +103,26 @@ function freeform( s ) {
 
 function joinBlocks( pre, tokens, post ) {
     var blocks = [], i, l, html, item, token;
-    
+
     if ( pre.length ) {
         blocks.push( freeform( pre ) );
     }
-    
+
     for ( i = 0, l = tokens.length; i < l; i++ ) {
         item = tokens[ i ];
         token = item[ 0 ];
         html = item[ 1 ];
-        
+
         blocks.push( token );
         if ( html.length ) {
             blocks.push( freeform( html ) );
         }
     }
-    
+
     if ( post.length ) {
         blocks.push( freeform( post ) );
     }
-    
+
     return blocks;
 }
 

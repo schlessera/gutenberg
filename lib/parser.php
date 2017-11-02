@@ -1918,7 +1918,7 @@ class Gutenberg_PEG_Parser {
 
     // array arguments are backwards because of PHP
     if ( ! function_exists( 'peg_array_partition' ) ) {
-        function peg_array_partition( $array, callable $predicate ) {
+        function peg_array_partition( $array, $predicate ) {
             $truthy = array();
             $falsey = array();
 
@@ -1935,25 +1935,25 @@ class Gutenberg_PEG_Parser {
     if ( ! function_exists( 'peg_join_blocks' ) ) {
         function peg_join_blocks( $pre, $tokens, $post ) {
             $blocks = array();
-            
+
             if ( ! empty( $pre ) ) {
                 $blocks[] = array( 'attrs' => array(), 'innerHTML' => $pre );
             }
-            
+
             foreach ( $tokens as $token ) {
                 list( $token, $html ) = $token;
-                
+
                 $blocks[] = $token;
-                
+
                 if ( ! empty( $html ) ) {
                     $blocks[] = array( 'attrs' => array(), 'innerHTML' => $html );
                 }
             }
-            
+
             if ( ! empty( $post ) ) {
                 $blocks[] = array( 'attrs' => array(), 'innerHTML' => $post );
             }
-            
+
             return $blocks;
         }
     }
