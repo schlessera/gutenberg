@@ -157,26 +157,6 @@ describe( 'block parser', () => {
 			} );
 		} );
 
-		it( 'should parse the anchor if the block supports it', () => {
-			const blockType = {
-				attributes: {
-					content: {
-						type: 'string',
-						source: text( 'div' ),
-					},
-				},
-				supportAnchor: true,
-			};
-
-			const rawContent = '<div id="chicken">Ribs</div>';
-			const attrs = {};
-
-			expect( getBlockAttributes( blockType, rawContent, attrs ) ).toEqual( {
-				content: 'Ribs',
-				anchor: 'chicken',
-			} );
-		} );
-
 		it( 'should parse the className if the block supports it', () => {
 			const blockType = {
 				attributes: {},
