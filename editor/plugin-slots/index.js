@@ -24,6 +24,10 @@ class PluginSlots extends Component {
 		this.props.hooks.addAction( 'registerFill', 'plugin-slots-register', this.registerFill );
 	}
 
+	componentWillUnmount() {
+		this.props.hooks.removeAction( 'registerFill', 'plugin-slots-register' );
+	}
+
 	registerFill( name, FillComponent ) {
 		this.setState( ( prevState ) => {
 			const { fills } = prevState;
