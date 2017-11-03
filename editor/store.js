@@ -5,6 +5,7 @@ import { applyMiddleware, createStore } from 'redux';
 import refx from 'refx';
 import multi from 'redux-multi';
 import { flowRight } from 'lodash';
+import { responsiveStoreEnhancer } from 'redux-responsive';
 
 /**
  * Internal dependencies
@@ -27,6 +28,7 @@ function createReduxStore() {
 	const enhancers = [
 		applyMiddleware( multi, refx( effects ) ),
 		storePersist( 'preferences', GUTENBERG_PREFERENCES_KEY ),
+		responsiveStoreEnhancer,
 	];
 
 	if ( window.__REDUX_DEVTOOLS_EXTENSION__ ) {

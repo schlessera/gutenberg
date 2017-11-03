@@ -30,46 +30,10 @@ import {
 	getNotices,
 } from '../selectors';
 
-const MOBILE_WIDTH = 762;
-
 class Layout extends Component {
-	constructor() {
-		super( ...arguments );
-		this.onUpdateDimensions = this.onUpdateDimensions.bind( this );
-		this.saveLastWindowWidth = this.saveLastWindowWidth.bind( this );
-		this.state = {
-			lastWindowWidth: null,
-		};
-	}
-
-	saveLastWindowWidth() {
-		this.setState( {
-			lastWindowWidth: window.innerWidth,
-		} );
-	}
-
-	onUpdateDimensions() {
-		if ( this.props.isSidebarOpened &&
-			this.state.lastWindowWidth > MOBILE_WIDTH &&
-			window.innerWidth < MOBILE_WIDTH
-		) {
+	componentWillReceiveProps( nextProps ) {
+		if ( nextProps.isSidebarOpened && nextProps.isMobile && ! this.props.isMobile ) {
 			this.props.toggleSidebar();
-		}
-		this.saveLastWindowWidth();
-	}
-
-	componentDidMount() {
-		if ( window ) {
-			if ( ! this.state.lastWindowWidth ) {
-				this.saveLastWindowWidth();
-			}
-			window.addEventListener( 'resize', this.onUpdateDimensions );
-		}
-	}
-
-	componentWillUnmount() {
-		if ( window ) {
-			window.removeEventListener( 'resize', this.onUpdateDimensions );
 		}
 	}
 
@@ -106,6 +70,7 @@ export default connect(
 		mode: getEditorMode( state ),
 		isSidebarOpened: isEditorSidebarOpened( state ),
 		notices: getNotices( state ),
+		isMobile: ! state.responsive.greaterThan.small,
 	} ),
 	{ removeNotice, toggleSidebar }
 )( navigateRegions( Layout ) );
