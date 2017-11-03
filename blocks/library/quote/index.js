@@ -23,29 +23,67 @@ import BlockDescription from '../../block-description';
 
 const { children, node: element, query } = source;
 
+const attributesSchema = {
+	value: {
+		type: 'array',
+		source: query( 'blockquote > p', element() ),
+		default: [],
+	},
+	citation: {
+		type: 'array',
+		source: children( 'cite' ),
+	},
+	align: {
+		type: 'string',
+	},
+	style: {
+		type: 'number',
+		default: 1,
+	},
+};
+
 registerBlockType( 'core/quote', {
 	title: __( 'Quote' ),
 	icon: 'format-quote',
 	category: 'common',
 
-	attributes: {
-		value: {
-			type: 'array',
-			source: query( 'blockquote > p', element() ),
-			default: [],
+	version: 2,
+	migrations: [
+		{
+			version: 1,
+			attributes: {
+				...attributesSchema,
+				citation: {
+					type: 'array',
+					source: children( 'footer' ),
+				},
+			},
+
+			save( { attributes } ) {
+				const { align, value, citation, style } = attributes;
+
+				return (
+					<blockquote
+						className={ `blocks-quote-style-${ style }` }
+						style={ { textAlign: align ? align : null } }
+					>
+						{ value.map( ( paragraph, i ) => (
+							<p key={ i }>{ paragraph.props.children }</p>
+						) ) }
+						{ citation && citation.length > 0 && (
+							<footer>{ citation }</footer>
+						) }
+					</blockquote>
+				);
+			},
+
+			migrate( attributes ) {
+				return attributes;
+			},
 		},
-		citation: {
-			type: 'array',
-			source: children( 'footer' ),
-		},
-		align: {
-			type: 'string',
-		},
-		style: {
-			type: 'number',
-			default: 1,
-		},
-	},
+	],
+
+	attributes: attributesSchema,
 
 	transforms: {
 		from: [
@@ -223,7 +261,7 @@ registerBlockType( 'core/quote', {
 					<p key={ i }>{ paragraph.props.children }</p>
 				) ) }
 				{ citation && citation.length > 0 && (
-					<footer>{ citation }</footer>
+					<cite>{ citation }</cite>
 				) }
 			</blockquote>
 		);

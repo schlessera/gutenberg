@@ -1,8 +1,8 @@
 /**
  * External dependencies
  */
-import { parse as hpqParse, attr } from 'hpq';
-import { mapValues, reduce, pickBy } from 'lodash';
+import { parse as hpqParse } from 'hpq';
+import { mapValues, reduce, pickBy, find } from 'lodash';
 
 /**
  * Internal dependencies
@@ -10,8 +10,8 @@ import { mapValues, reduce, pickBy } from 'lodash';
 import { parse as grammarParse } from './post.pegjs';
 import { getBlockType, getUnknownTypeHandlerName } from './registration';
 import { createBlock } from './factory';
-import { isValidBlock } from './validation';
-import { getCommentDelimitedContent } from './serializer';
+import { isEquivalentHTML } from './validation';
+import { getCommentDelimitedContent, getSaveContent } from './serializer';
 
 /**
  * Returns true if the provided function is a valid attribute source, or false
@@ -88,21 +88,21 @@ export function asType( value, type ) {
 }
 
 /**
- * Returns the block attributes of a registered block node given its type.
+ * Returns block attributes given a schema of attributes
  *
- * @param  {?Object} blockType     Block type
+ * @param  {?Object} schema        Attributes Schema
  * @param  {string}  rawContent    Raw block content
  * @param  {?Object} attributes    Known block attributes (from delimiters)
  * @return {Object}                All block attributes
  */
-export function getBlockAttributes( blockType, rawContent, attributes ) {
+export function getBlockAttributes( schema, rawContent, attributes ) {
 	// Retrieve additional attributes sourced from content
 	const sourcedAttributes = getSourcedAttributes(
 		rawContent,
-		blockType.attributes
+		schema
 	);
 
-	const blockAttributes = reduce( blockType.attributes, ( result, source, key ) => {
+	const blockAttributes = reduce( schema, ( result, source, key ) => {
 		let value;
 		if ( sourcedAttributes.hasOwnProperty( key ) ) {
 			value = sourcedAttributes[ key ];
@@ -139,15 +139,14 @@ export function getBlockAttributes( blockType, rawContent, attributes ) {
 
 			// eslint-disable-next-line no-console
 			console.error(
-				`Expected attribute "${ key }" of type ${ source.type } for ` +
-				`block type "${ blockType.name }" but received ${ typeof value }.`
+				`Expected attribute "${ key }" of type ${ source.type }`
 			);
 		}
 
 		result[ key ] = coercedValue;
 		return result;
 	}, {} );
-
+	/*
 	// If the block supports anchor, parse the id
 	if ( blockType.supportAnchor ) {
 		blockAttributes.anchor = hpqParse( rawContent, attr( '*', 'id' ) );
@@ -157,7 +156,7 @@ export function getBlockAttributes( blockType, rawContent, attributes ) {
 	if ( blockType.className !== false && attributes && attributes.className ) {
 		blockAttributes.className = attributes.className;
 	}
-
+*/
 	return blockAttributes;
 }
 
@@ -167,54 +166,83 @@ export function getBlockAttributes( blockType, rawContent, attributes ) {
  * @param  {?String} name       Block type name
  * @param  {String}  rawContent Raw block content
  * @param  {?Object} attributes Attributes obtained from block delimiters
+ * @param  {?Number} version    The block version
  * @return {?Object}            An initialized block object (if possible)
  */
-export function createBlockWithFallback( name, rawContent, attributes ) {
-	// Use type from block content, otherwise find unknown handler.
-	name = name || getUnknownTypeHandlerName();
+export function createBlockWithFallback( name, rawContent, attributes, version ) {
+	let originalContent = rawContent; // originalContent before parsing
+	let contentToValidate; // Content serialized after parsing or after migration from old block
+	let parsedAttributes; // Parsed block attributes or migrated to
 
 	// Convert 'core/text' blocks in existing content to the new
 	// 'core/paragraph'.
 	if ( name === 'core/text' || name === 'core/cover-text' ) {
 		name = 'core/paragraph';
 	}
+	let shouldFallback = false;
 
-	// Try finding type for known block name, else fall back again.
-	let blockType = getBlockType( name );
-	const fallbackBlock = getUnknownTypeHandlerName();
-	if ( ! blockType ) {
-		// If detected as a block which is not registered, preserve comment
-		// delimiters in content of unknown type handler.
-		if ( name ) {
-			rawContent = getCommentDelimitedContent( name, attributes, rawContent );
+	// Checking The BlockType
+	const blockType = getBlockType( name );
+	const fallbackBlockName = getUnknownTypeHandlerName();
+	if ( blockType ) {
+		const blockTypeVersion = blockType.version || 1;
+		if ( blockTypeVersion !== version ) {
+			const migration = find( blockType.migrations, ( mig ) => mig.version === version );
+			if ( ! migration ) {
+				shouldFallback = true;
+			} else {
+				// Needs to pass the migration.attributes instead to do the parsing
+				const oldAttributes = getBlockAttributes( migration.attributes, rawContent, attributes );
+
+				// Serialize using the old save
+				contentToValidate = getSaveContent( migration.save, oldAttributes );
+
+				// Migrate the old attributes
+				parsedAttributes = migration.migrate( oldAttributes );
+			}
+		} else {
+			parsedAttributes = getBlockAttributes( blockType.attributes, rawContent, attributes );
+			contentToValidate = getSaveContent( blockType.save, parsedAttributes );
+		}
+	} else {
+		shouldFallback = true;
+	}
+
+	// Fallback to the fallback block type
+	if ( shouldFallback ) {
+		// Explicit empty fallback blocks are ignored
+		if ( ! name && ! rawContent ) {
+			return;
 		}
 
-		name = fallbackBlock;
-		blockType = getBlockType( name );
+		const fallbackBlockType = getBlockType( fallbackBlockName );
+		if ( ! fallbackBlockType ) {
+			// eslint-disable-next-line no-console
+			console.warn( `Block ${ name } ignored, no fallback block` );
+			return;
+		}
+
+		if ( name ) {
+			originalContent = getCommentDelimitedContent( name, attributes, rawContent, version );
+		}
+
+		name = fallbackBlockName;
+		parsedAttributes = getBlockAttributes( fallbackBlockType.attributes, rawContent, attributes );
+		contentToValidate = getSaveContent( fallbackBlockType.save, parsedAttributes );
 	}
 
-	// Include in set only if type were determined.
-	// TODO do we ever expect there to not be an unknown type handler?
-	if ( blockType && ( rawContent || name !== fallbackBlock ) ) {
-		// TODO allow blocks to opt-in to receiving a tree instead of a string.
-		// Gradually convert all blocks to this new format, then remove the
-		// string serialization.
-		const block = createBlock(
-			name,
-			getBlockAttributes( blockType, rawContent, attributes )
-		);
+	const block = createBlock(
+		name,
+		parsedAttributes
+	);
 
-		// Validate that the parsed block is valid, meaning that if we were to
-		// reserialize it given the assumed attributes, the markup matches the
-		// original value.
-		block.isValid = isValidBlock( rawContent, blockType, block.attributes );
+	block.isValid = isEquivalentHTML( originalContent, contentToValidate );
 
-		// Preserve original content for future use in case the block is parsed
-		// as invalid, or future serialization attempt results in an error
-		block.originalContent = rawContent;
+	// Preserve original content for future use in case the block is parsed
+	// as invalid, or future serialization attempt results in an error
+	block.originalContent = originalContent;
 
-		return block;
-	}
+	return block;
 }
 
 /**
@@ -225,8 +253,8 @@ export function createBlockWithFallback( name, rawContent, attributes ) {
  */
 export function parseWithGrammar( content ) {
 	return grammarParse( content ).reduce( ( memo, blockNode ) => {
-		const { blockName, rawContent, attrs } = blockNode;
-		const block = createBlockWithFallback( blockName, rawContent.trim(), attrs );
+		const { blockName, rawContent, attrs, version } = blockNode;
+		const block = createBlockWithFallback( blockName, rawContent.trim(), attrs, version );
 		if ( block ) {
 			memo.push( block );
 		}

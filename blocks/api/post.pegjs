@@ -84,6 +84,7 @@ WP_Block_Balanced
     return array(
       'blockName'  => $s['blockName'],
       'attrs'      => $s['attrs'],
+			'version'    => $s['version'],
       'rawContent' => implode( '', $ts ),
     );
     ?> **/
@@ -91,6 +92,7 @@ WP_Block_Balanced
     return {
       blockName: s.blockName,
       attrs: s.attrs,
+      version: s.version || 1,
       rawContent: ts.join( '' )
     };
   }
@@ -118,18 +120,23 @@ WP_Block_Start
   = "<!--" WS+ "wp:" blockName:WP_Block_Name WS+ attrs:(a:WP_Block_Attributes WS+ {
     /** <?php return $a; ?> **/
     return a;
+  })? version:( v:WP_Block_Version WS+ {
+    /** <?php return $v; ?> **/
+    return v;
   })? "-->"
   {
     /** <?php
     return array(
       'blockName' => $blockName,
       'attrs'     => $attrs,
+      'version'  => $version,
     );
     ?> **/
 
     return {
       blockName: blockName,
-      attrs: attrs
+      attrs: attrs,
+      version: version
     };
   }
 
@@ -159,6 +166,13 @@ WP_Core_Block_Name
   {
     /** <?php return "core/$type"; ?> **/
     return 'core/' + type;
+  }
+
+WP_Block_Version
+  = "v" v:$(ASCII_Digit*)
+  {
+    /** <?php return (int) $v; ?> **/
+    return parseInt( v, 10 );
   }
 
 WP_Block_Attributes

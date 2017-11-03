@@ -382,7 +382,7 @@ export function isEquivalentHTML( a, b ) {
 export function isValidBlock( rawContent, blockType, attributes ) {
 	let saveContent;
 	try {
-		saveContent = getSaveContent( blockType, attributes );
+		saveContent = getSaveContent( blockType.save, attributes );
 	} catch ( error ) {
 		return false;
 	}
