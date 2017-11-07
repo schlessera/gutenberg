@@ -12,8 +12,6 @@ import { flowRight } from 'lodash';
 import effects from './effects';
 import reducer from './reducer';
 import storePersist from './store-persist';
-import { disableIsSidebarOpenedOnMobile } from './utils/mobile';
-import { STORE_DEFAULTS } from './store-defaults';
 
 /**
  * Module constants
@@ -22,13 +20,18 @@ const GUTENBERG_PREFERENCES_KEY = `GUTENBERG_PREFERENCES_${ window.userSettings.
 
 /**
  * Creates a new instance of a Redux store.
+ * @param {Object}        storePersistOptions Additional store persist options
  *
- * @return {Redux.Store} Redux store
+ * @return {Redux.Store}                      Redux store
  */
-function createReduxStore() {
+function createReduxStore( storePersistOptions = {} ) {
 	const enhancers = [
 		applyMiddleware( multi, refx( effects ) ),
-		storePersist( 'preferences', GUTENBERG_PREFERENCES_KEY, STORE_DEFAULTS, disableIsSidebarOpenedOnMobile ),
+		storePersist( {
+			reducerKey: 'preferences',
+			storageKey: GUTENBERG_PREFERENCES_KEY,
+			...storePersistOptions,
+		} ),
 	];
 
 	if ( window.__REDUX_DEVTOOLS_EXTENSION__ ) {

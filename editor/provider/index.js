@@ -22,6 +22,7 @@ import {
  */
 import { setupEditor, undo } from '../actions';
 import createReduxStore from '../store';
+import { disableIsSidebarOpenedOnMobile } from '../utils/mobile';
 
 /**
  * The default editor settings
@@ -43,7 +44,9 @@ class EditorProvider extends Component {
 	constructor( props ) {
 		super( ...arguments );
 
-		const store = createReduxStore();
+		const store = createReduxStore( {
+			beforeRehydrate: disableIsSidebarOpenedOnMobile,
+		} );
 		store.dispatch( setupEditor( props.post ) );
 
 		this.store = store;
